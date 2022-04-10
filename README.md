@@ -1,7 +1,7 @@
 <h1 align="center">Streamlit Bridge</h1>
 
 <div align="center">
-Two [Streamlit](https://streamlit.io/) components that allow client side (javascript) to send data to the server side (python) and render HTML content without processed by markdown.
+    Two <a href="https://streamlit.io/">Streamlit</a> components that allow client side (javascript) to send data to the server side (python) and render HTML content without being processed by Markdown.
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
@@ -13,22 +13,22 @@ These two components offer more flexibility in creating Streamlit applications b
 
 Here are some examples:
 
-1. [List of inline buttons](/examples/inline_buttons.py)
+1. [List of inline buttons](/examples/inline_buttons.py) ![Streamlit inline buttons](/examples/inline_buttons.gif)
 
-```python
-import streamlit as st
-from st_bridge import bridge, html
+    ```python
+    import streamlit as st
+    from st_bridge import bridge, html
 
-data = bridge("my-bridge", default="no button is clicked")
+    data = bridge("my-bridge", default="no button is clicked")
 
-html("""
-<button onClick="stBridges.sendText('my-bridge', 'button 1 is clicked')">Button 1</button>
-<button onClick="stBridges.sendText('my-bridge', 'button 2 is clicked')">Button 2</button>
-<button onClick="stBridges.sendText('my-bridge', 'button 3 is clicked')">Button 3</button>
-""")
+    html("""
+    <button onClick="stBridges.sendText('my-bridge', 'button 1 is clicked')">Button 1</button>
+    <button onClick="stBridges.sendText('my-bridge', 'button 2 is clicked')">Button 2</button>
+    <button onClick="stBridges.sendText('my-bridge', 'button 3 is clicked')">Button 3</button>
+    """)
 
-st.write(data)
-```
+    st.write(data)
+    ```
 
 ### Installation
 
