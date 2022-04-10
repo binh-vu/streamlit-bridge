@@ -19,7 +19,6 @@ else:
 
 def bridge(
     name: str,
-    json: bool = False,
     default: Optional[Any] = None,
     key: Optional[str] = None,
 ):
@@ -31,14 +30,10 @@ def bridge(
 
     Args:
         name: unique name of the bridge to identify the bridge Javascript's call will send data to
-        json: whether to parse the data as JSON
         default: the initial return value of the component before the user has interacted with it.
         key: streamlit component's id
-    ."""
+    """
     val = _bridge(name=name, key=key, default=default)
-
-    if json and val is not None:
-        return orjson.loads(val)
     return val
 
 

@@ -15,20 +15,22 @@ Here are some examples:
 
 1. [List of inline buttons](/examples/inline_buttons.py) ![Streamlit inline buttons](/examples/inline_buttons.gif)
 
-    ```python
-    import streamlit as st
-    from st_bridge import bridge, html
+   ```python
+   import streamlit as st
+   from st_bridge import bridge, html
 
-    data = bridge("my-bridge", default="no button is clicked")
+   data = bridge("my-bridge", default="no button is clicked")
 
-    html("""
-    <button onClick="stBridges.sendText('my-bridge', 'button 1 is clicked')">Button 1</button>
-    <button onClick="stBridges.sendText('my-bridge', 'button 2 is clicked')">Button 2</button>
-    <button onClick="stBridges.sendText('my-bridge', 'button 3 is clicked')">Button 3</button>
-    """)
+   html("""
+   <button onClick="stBridges.send('my-bridge', 'button 1 is clicked')">Button 1</button>
+   <button onClick="stBridges.send('my-bridge', 'button 2 is clicked')">Button 2</button>
+   <button onClick="stBridges.send('my-bridge', 'button 3 is clicked')">Button 3</button>
+   """)
 
-    st.write(data)
-    ```
+   st.write(data)
+   ```
+
+2. [Timer](/examples/timer.py)
 
 ### Installation
 
@@ -43,7 +45,6 @@ Bridge Component
 ```python
 def bridge(
     name: str,
-    json: bool = False,
     default: Optional[Any] = None,
     key: Optional[str] = None,
 ):
@@ -55,12 +56,12 @@ def bridge(
 
     Args:
         name: unique name of the bridge to identify the bridge Javascript's call will send data to
-        json: whether to parse the data as JSON
         default: the initial return value of the component before the user has interacted with it.
         key: streamlit component's id
-    ."""
-    pass
+    """
 ```
+
+To send data from the client to a corresponding bridge component with `<bridge-name>`, use the function: `window.stBridges.send(<bridge-name>, <data>);` or `window.parent.stBridges.send(<bridge-name>, <data>);` if you are running it inside an component (i.e., running inside an iframe).
 
 HTML Component
 
@@ -75,4 +76,5 @@ def html(html: str, iframe: bool = False, key: Optional[str]=None) -> None:
                 setting it to false, we allow the HTML to rendered in the main document.
         key: streamlit component's id
     """
+    pass
 ```
