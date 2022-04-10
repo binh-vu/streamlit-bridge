@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "streamlit-bridge"
+version = "1.0.0"
+description = "A hidden streamlit component that allows client side (javascript) to trigger events on the server side (python) and vice versa"
+authors = ["Binh Vu <binh@toan2.com>"]
+license = "MIT"
+packages = [
+    { include = "st_bridge" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+streamlit = ">=0.63"
+orjson = "^3.0.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
