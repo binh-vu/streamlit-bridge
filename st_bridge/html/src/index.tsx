@@ -7,6 +7,9 @@ let container: HTMLDivElement | null = null;
 function getGlobal() {
   let global: Window;
   try {
+    /* Try to access a property of window.top. This will fail when window.top
+       is unset or cross-origin doesn't allow us to access window.top
+     */
     const stBridges = (window.top as any).stBridges;
 
     global = window.top || window.parent;
