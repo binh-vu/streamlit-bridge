@@ -4,27 +4,10 @@ const root = document.body.appendChild(document.createElement("div"));
 
 let container: HTMLDivElement | null = null;
 
-function getGlobal() {
-  let global: Window;
-  try {
-    /* Try to access a property of window.top. This will fail when window.top
-       is unset or cross-origin doesn't allow us to access window.top
-     */
-    const stBridges = (window.top as any).stBridges;
-
-    global = window.top || window.parent;
-  } catch {
-    global = window.parent;
-  }
-  return global;
-}
-
 function getContainer() {
   if (container !== null) return container;
 
-  const iframes = getGlobal().document.getElementsByTagName(
-    "iframe"
-  );
+  const iframes = window.parent.document.getElementsByTagName("iframe");
   for (let i = 0; i < iframes.length; i++) {
     const iframe = iframes[i];
     if (
@@ -66,7 +49,7 @@ function onRender(event: Event): void {
 
   if (container.lastElementChild!.tagName.toLowerCase() === "iframe") {
     // need to create a new div to render the html
-    const div = getGlobal().document.createElement("div");
+    const div = window.parent.document.createElement("div");
     container.appendChild(div);
     // hide the iframe
     (container.firstElementChild! as HTMLElement).style.display = "none";

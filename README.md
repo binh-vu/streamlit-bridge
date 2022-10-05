@@ -32,13 +32,13 @@ Here are some examples:
 
 2. [Timer](/examples/timer.py)
 
-### Installation
+## Installation
 
 ```bash
 pip install streamlit-bridge
 ```
 
-### API
+## API
 
 Bridge Component
 
@@ -78,3 +78,11 @@ def html(html: str, iframe: bool = False, key: Optional[str]=None) -> None:
     """
     pass
 ```
+
+## Development
+
+- To build a streamlit component after modifying them:
+  - visiting their folder: `st_bridge/<component>`
+  - run `yarn install; yarn build`
+- To test a component interactively, set `_RELEASE = False` in `st_bridge/<component>.py` and run `streamlit run st_bridge/<component>.py`
+- To release, build the streamlit components first, then run `poetry publish --build`.

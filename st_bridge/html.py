@@ -23,7 +23,7 @@ _RELEASE = True
 if not _RELEASE:
     _html_func = components.declare_component(
         "html",
-        url="http://localhost:3001",
+        url="http://localhost:3000",
     )
 else:
     parent_dir = os.path.dirname(os.path.abspath(__file__))
@@ -49,7 +49,7 @@ def html(html: str, iframe: bool = False, key: Optional[str]=None) -> None:
 
 
 # Some test code for development.
-# Run: `$ streamlit run st_bridge/__init__.py`
+# Run: `$ streamlit run st_bridge/html.py`
 if not _RELEASE:
     import streamlit as st
 
