@@ -7,7 +7,7 @@ class Bridge {
     this.name = name;
   }
 
-  public send = (data: any) => {
+  public send (data: any) {
     Streamlit.setComponentValue(data);
   };
 }
@@ -54,9 +54,7 @@ function onRender(event: Event): void {
 
   const stBridges = (global as any).stBridges;
   const bridge = data.args["name"];
-  if (stBridges.bridges[bridge] === undefined) {
-    stBridges.bridges[bridge] = new Bridge(bridge);
-  }
+  stBridges.bridges[bridge] = new Bridge(bridge);
 }
 
 // Attach our `onRender` handler to Streamlit's render event.
