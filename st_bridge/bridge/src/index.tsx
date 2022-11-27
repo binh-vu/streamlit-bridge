@@ -2,14 +2,16 @@ import { Streamlit, RenderData } from "streamlit-component-lib";
 
 class Bridge {
   public name: string;
+  public key: string | number | null;
 
-  constructor(name: string) {
+  constructor(name: string, key: string | number | null) {
     this.name = name;
+    this.key = key;
   }
 
-  public send = (data: any) => {
+  public send(data: any) {
     Streamlit.setComponentValue(data);
-  };
+  }
 }
 
 // store data in the topmost window in the window hierarchy as the component
@@ -54,8 +56,11 @@ function onRender(event: Event): void {
 
   const stBridges = (global as any).stBridges;
   const bridge = data.args["name"];
+  const key = data.args["key"];
   if (stBridges.bridges[bridge] === undefined) {
-    stBridges.bridges[bridge] = new Bridge(bridge);
+    stBridges.bridges[bridge] = new Bridge(bridge, key);
+  } else if (stBridges.bridges[bridge].key !== key) {
+    stBridges.bridges[bridge] = new Bridge(bridge, key);
   }
 }
 
