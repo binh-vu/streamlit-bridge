@@ -1,11 +1,6 @@
-<h1 align="center">Streamlit Bridge</h1>
+# Streamlit Bridge ![PyPI](https://img.shields.io/pypi/v/streamlit-bridge) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-<div align="center">
-    Two <a href="https://streamlit.io/">Streamlit</a> components that allow client side (javascript) to send data to the server side (python) and render HTML content without being processed by Markdown.
-
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-
-</div>
+Two <a href="https://streamlit.io/">Streamlit</a> components that allow client side (javascript) to send data to the server side (python) and render HTML content without being processed by Markdown.
 
 ## Introduction
 
