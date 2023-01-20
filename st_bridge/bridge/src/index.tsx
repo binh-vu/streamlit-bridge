@@ -23,9 +23,6 @@ function getGlobal() {
     /* Try to access a property of window.top. This will fail when window.top
        is unset or cross-origin doesn't allow us to access window.top
      */
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const stBridges = (window.top as any).stBridges;
-
     global = window.top || window.parent;
   } catch {
     global = window.parent;
@@ -57,11 +54,7 @@ function onRender(event: Event): void {
   const stBridges = (global as any).stBridges;
   const bridge = data.args["name"];
   const key = data.args["key"];
-  if (stBridges.bridges[bridge] === undefined) {
-    stBridges.bridges[bridge] = new Bridge(bridge, key);
-  } else if (stBridges.bridges[bridge].key !== key) {
-    stBridges.bridges[bridge] = new Bridge(bridge, key);
-  }
+  stBridges.bridges[bridge] = new Bridge(bridge, key);
 }
 
 // Attach our `onRender` handler to Streamlit's render event.
