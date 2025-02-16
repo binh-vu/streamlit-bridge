@@ -74,7 +74,7 @@ def html(html: str, iframe: bool = False, key: Optional[str]=None) -> None:
     pass
 ```
 
-Note: as of version 1.1.7, the HTML component automatically creates a reference to stBridges in the top-most window, so using `window.top.stBridges` is no longer necessary; instead, you can just use the `stBridges` variable directly (e.g., `stBridges.send(...)`). If you have trouble accessing `stBridges`, try using `window.top.stBridges` in the console of the browser to debug.
+Note: as of version 1.1.8, the HTML component automatically creates a reference to stBridges in the top-most window, so using `window.top.stBridges` is no longer necessary; instead, you can just use the `stBridges` variable directly (e.g., `stBridges.send(...)`). If you have trouble accessing `stBridges`, try using `window.top.stBridges` in the console of the browser to debug.
 
 ## Development
 
