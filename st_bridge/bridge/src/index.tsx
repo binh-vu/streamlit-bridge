@@ -16,7 +16,6 @@ class Bridge {
 
 // store data in the topmost window in the window hierarchy as the component
 // is rendered inside an iframe.
-
 function getGlobal() {
   let global: Window;
   try {

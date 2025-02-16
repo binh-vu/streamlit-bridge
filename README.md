@@ -17,9 +17,9 @@ Here are some examples:
    data = bridge("my-bridge", default="no button is clicked")
 
    html("""
-   <button onClick="stBridges.send('my-bridge', 'button 1 is clicked')">Button 1</button>
-   <button onClick="stBridges.send('my-bridge', 'button 2 is clicked')">Button 2</button>
-   <button onClick="stBridges.send('my-bridge', 'button 3 is clicked')">Button 3</button>
+   <button onClick="window.top.stBridges.send('my-bridge', 'button 1 is clicked')">Button 1</button>
+   <button onClick="window.top.stBridges.send('my-bridge', 'button 2 is clicked')">Button 2</button>
+   <button onClick="window.top.stBridges.send('my-bridge', 'button 3 is clicked')">Button 3</button>
    """)
 
    st.write(data)
@@ -56,7 +56,7 @@ def bridge(
     """
 ```
 
-To send data from the client to a corresponding bridge component with `<bridge-name>`, use the function: `window.stBridges.send(<bridge-name>, <data>);` or `window.parent.stBridges.send(<bridge-name>, <data>);` if you are running it inside an component (i.e., running inside an iframe).
+To send data from the client to a corresponding bridge component with `<bridge-name>`, use the function: `window.stBridges.send(<bridge-name>, <data>);` or `window.top.stBridges.send(<bridge-name>, <data>);` if you are running it inside an component (i.e., running inside an iframe) or Streamlit Cloud. Note that `window.top` is important to access the `stBridges` variable stored in the top-most window by the bridge component.
 
 HTML Component
 
@@ -73,6 +73,8 @@ def html(html: str, iframe: bool = False, key: Optional[str]=None) -> None:
     """
     pass
 ```
+
+Note: as of version 1.1.7, the HTML component automatically creates a reference to stBridges in the top-most window, so using `window.top.stBridges` is no longer necessary; instead, you can just use the `stBridges` variable directly (e.g., `stBridges.send(...)`). If you have trouble accessing `stBridges`, try using `window.top.stBridges` in the console of the browser to debug.
 
 ## Development
 

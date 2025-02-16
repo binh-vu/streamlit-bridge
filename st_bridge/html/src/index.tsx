@@ -24,6 +24,27 @@ function getContainer() {
   return container;
 }
 
+// get the global where stBridges stores data
+function getGlobal() {
+  let global: Window;
+  try {
+    /* Try to access a property of window.top. This will fail when window.top
+       is unset or cross-origin doesn't allow us to access window.top
+     */
+    global = window.top || window.parent;
+  } catch {
+    global = window.parent;
+  }
+  return global;
+}
+const global = getGlobal();
+
+// create a reference to the stBridges object in the topmost window so we can access it from nested iframes.
+(window as any).stBridges = (global as any).stBridges;
+if ((window as any).parent !== undefined) {
+  (window as any).parent.stBridges = (global as any).stBridges;
+}
+
 /**
  * The component's render function. This will be called immediately after
  * the component is initially loaded, and then again every time the
